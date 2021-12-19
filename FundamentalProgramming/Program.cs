@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace FundamentalProgramming
@@ -8,8 +8,7 @@ namespace FundamentalProgramming
         static void Main(string[] args)
         {
             string lanjut;
-            int hapus;
-            //List<string> dataMhs = new List<string>();
+            Activity a = new Activity();
             menu:
                 int pilih;
                 Console.WriteLine("Menu Program Mahasiswa");
@@ -17,7 +16,7 @@ namespace FundamentalProgramming
                 Console.WriteLine("1. Hitung Nilai Mahasiswa");
                 Console.WriteLine("2. Tambah Mahasiswa");
                 Console.WriteLine("3. Lihat Data Mahasiswa");
-                Console.WriteLine("4. Lihat Data Dosen");
+                Console.WriteLine("4. Ubah Data Mahasiswa");
                 Console.WriteLine("5. Hapus Data Mahasiswa");
                 Console.WriteLine("=========================");
                 Console.Write("Masukkan Pilihan (1-4) : ");
@@ -30,58 +29,40 @@ namespace FundamentalProgramming
                         coba.LihatNilai();
                         break;
                     case 2:
-                        /*ist<Mahasiswa> mhs = new List<Mahasiswa> ();
-                        Mahasiswa.TambahMahasiswa();*/
-                        /*Console.WriteLine("Tambah Data Mahasiswa");
-                        Console.WriteLine("==========================");
-                        string name;
-                        Console.Write("Masukkan Name : ");
-                        name = Console.ReadLine();
-                        dataMhs.Add(name);
-                        Console.WriteLine("=========================");*/
+                        Mahasiswa m = new Mahasiswa(a);
+                         a.BuatMhs(m);
                         break;
                     case 3:
                         Console.WriteLine("Lihat Data Mahasiswa");
                         Console.WriteLine("=========================");
-                        Mahasiswa jaki = new Mahasiswa();
-                        jaki.Nim = 1006;
-                        jaki.Name = "Jaki";
-                        jaki.Jurusan = "Ilmu Komputer";
-                        jaki.Ipk = 3.5f;
-
-                        //jaki.LihatMahasiswa();
-
-                        /*for (int i = 0; i < dataMhs.Count; i++)
-                        {
-                            Console.WriteLine(i + 1 + ". Nama Mahasiswa : " + dataMhs[i]);
-                        }
-                        Console.WriteLine("=========================");*/
+                        a.LihatMhs();
                         break;
                     case 4:
-                        Console.WriteLine("Lihat Data Dosen");
-                        Console.WriteLine("=========================");
-                        Dosen dana = new Dosen();
-                        dana.Nid = 2006;
-                        dana.Name = "Dana";
-                        dana.Jurusan = "Ilmu Komputer";
-                        dana.MataKuliah = "DSS";
-                        dana.Gaji = 10000000;
-                        dana.LihatDosen();
-                        break;
+                        string mhsEdit;
+                        if (a.mahasiswa.Count > 0)
+                        {
+                            Console.WriteLine("=====Ubah Mahasiswa========");
+                            Console.Write("Masukkan NIM yang ingin diedit : ");
+                            mhsEdit = Console.ReadLine();
+                            a.UbahMhs(mhsEdit);
+                        }
+                        else
+                        {
+                            Console.WriteLine("data kosong");
+                        }
+                    break;
                     case 5:
-                        Console.WriteLine("Hapus Data Mahasiswa");
-                        Console.WriteLine("=========================");
-                        Console.Write("Masukkan Index data yang ingin dihapus : ");
-                        try
+                        if (a.mahasiswa.Count > 0)
                         {
-                            hapus = Convert.ToInt32(Console.ReadLine());
-                            //dataMhs.RemoveAt(hapus);
+                            Console.WriteLine("=====Hapus Mahasiswa========");
+                            a.HapusMhs();
                         }
-                        catch (Exception)
+                        else
                         {
-                            Console.WriteLine("Data tidak ada");
+                            Console.WriteLine("data kosong");
+                           
                         }
-                        break;
+                    break;
                     default:
                         Console.WriteLine("PIlihan tidak terdaftar.");
                         Console.WriteLine("=========================");
@@ -106,19 +87,5 @@ namespace FundamentalProgramming
             }
         }
     }
-    ///static float hitungNilai(float tugas, float kuis, float uts, float uas)
-    //{
-    //  Console.Write("Nilai Tugas : ");
-    // tugas = float.Parse(Console.ReadLine());
-    // Console.Write("Nilai Kuis  : ");
-    // kuis = float.Parse(Console.ReadLine());
-    // Console.Write("Nilai UTS   : ");
-    // uts = float.Parse(Console.ReadLine());
-    // Console.Write("Nilai UAS   : ");
-    // uas = float.Parse(Console.ReadLine());
-    //Console.WriteLine();
-    // float nilaiAkhir = (tugas + kuis + uts + uas)/4 ;
-
-    // return nilaiAkhir;
-    // }
+ 
 }
